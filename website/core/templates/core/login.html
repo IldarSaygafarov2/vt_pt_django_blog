@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Авторизация
+{% endblock %}
+
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Submit</button>
+    {% comment %}{% if form.errors %}
+    <div class="alert alert-error">
+        <h4>Исправьте ошибки снизу</h4>
+        <ul>
+            {% for field in form %}
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        <li>
+                            <a href="#id_{{ field.name }}" class="error">{{ error|escape }}</a>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </ul>
+      {% if form.non_field_errors %}
+        {{ form.non_field_errors }}
+      {% endif %}
+    </div>
+    {% endif %}
+    {% endcomment %}
+</form>
+{% endblock %}
+
